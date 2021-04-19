@@ -154,8 +154,16 @@ func (kb baseKeybase) CreateAccount(
 	keyWriter keyWriter, name, mnemonic, bip39Passphrase, encryptPasswd, hdPath string, algo SigningAlgo,
 ) (Info, error) {
 
+	var derivedPriv []byte
+	var err error
+
 	// create master key and derive first key for keyring
-	derivedPriv, err := kb.options.deriveFunc(mnemonic, bip39Passphrase, hdPath, algo)
+	if !strings.Contains(mnemonic, " ") {
+		derivedPriv, err = deriveKeyByPrivKey(mnemonic, algo)
+	} else {
+		derivedPriv, err = kb.options.deriveFunc(mnemonic, bip39Passphrase, hdPath, algo)
+	}
+
 	if err != nil {
 		return nil, err
 	}

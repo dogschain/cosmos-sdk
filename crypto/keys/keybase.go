@@ -50,7 +50,7 @@ const (
 	DefaultBIP39Passphrase = ""
 
 	// bits of entropy to draw when creating a mnemonic
-	defaultEntropySize = 256
+	defaultEntropySize = 128
 )
 
 var (
