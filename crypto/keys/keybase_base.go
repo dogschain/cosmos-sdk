@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/cosmos/go-bip39"
 	"github.com/pkg/errors"
